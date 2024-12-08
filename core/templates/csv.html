@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio | Index{% endblock title %}
+
+{% block content %}
+<main class="csv-download">
+    <h1 class="csv-download__title">Aquí podrás descargar los archivos CSV</h1>
+    <div class="csv-download__buttons">
+        <a href="{% url 'csvPersonas' %}" class="csv-download__button">
+            <span class="csv-download__button-text">Personas</span>
+        </a>
+        <a href="{% url 'csvProyectos' %}" class="csv-download__button">
+            <span class="csv-download__button-text">Proyectos</span>
+        </a>
+        <a href="{% url 'csvTareas' %}" class="csv-download__button">
+            <span class="csv-download__button-text">Tareas</span>
+        </a>
+        <a href="{% url 'csvComentarios' %}" class="csv-download__button">
+            <span class="csv-download__button-text">Comentarios</span>
+        </a>
+        <a href="{% url 'csvDocumentos' %}" class="csv-download__button">
+            <span class="csv-download__button-text">Documentos</span>
+        </a>
+    </div>
+</main>
+{% endblock content %}

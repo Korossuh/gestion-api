@@ -5,24 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/csv.css' %}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'index' %}"></a>Inicio</li>
-            <li><a href="{% url 'personas-list' %}">Personas</a></li>
-            <li><a href="{% url 'proyectos-list' %}">Proyectos</a></li>
-            <li><a href="{% url 'tareas-list' %}">Tareas</a></li>
-            <li><a href="{% url 'comentarios-list' %}">Comentarios</a></li>
-            <li><a href="{% url 'archivos-list' %}">Archivos</a></li>
+    <nav class="nav">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <a href="{% url 'index' %}" class="nav__link">Inicio</a>
+            </li>
+            <li class="nav__item">
+                <a href="http://localhost:8000/api/" class="nav__link">APIs</a>
+                <ul class="nav__dropdown-content">
+                    <li><a href="{% url 'personas-list' %}" class="nav__dropdown-item">Personas</a></li>
+                    <li><a href="{% url 'proyectos-list' %}" class="nav__dropdown-item">Proyectos</a></li>
+                    <li><a href="{% url 'tareas-list' %}" class="nav__dropdown-item">Tareas</a></li>
+                    <li><a href="{% url 'comentarios-list' %}" class="nav__dropdown-item">Comentarios</a></li>
+                    <li><a href="{% url 'documentos-list' %}" class="nav__dropdown-item">Documentos</a></li>
+                </ul>
+            </li>
+            <li class="nav__item"><a href="{% url 'csv' %}" class="nav__link">Descargar svc</a></li>
         </ul>
     </nav>
+    
+    <main class="main-content">
+        {% block content %}
+        {% endblock content %}
+    </main>
 
-    {% block content %}
-    {% endblock content %}
-
-    <footer>
-        <p>&copy; 2024 Gestion Api. Todos los derechos reservados.</p>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2024 Gestion Api. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

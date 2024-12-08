@@ -41,12 +41,15 @@ class Comentario(models.Model):
     def __str__(self):
         return f"Comentario de {self.autor} en {self.tarea}"
 
-class Archivo(models.Model):
+class Documento(models.Model):
     nombre = models.CharField(max_length=100)
-    archivo = models.FileField(upload_to='archivos/')
-    tarea = models.ForeignKey(Tarea, on_delete=models.CASCADE, related_name='archivos')
-    subido_por = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name='archivos_subidos')
-    fecha_subida = models.DateTimeField(auto_now_add=True)
+    descripcion = models.TextField(blank=True, null=True)
+    enlace = models.URLField(blank=True, null=True)
+    tarea = models.ForeignKey('Tarea', on_delete=models.CASCADE, related_name='documentos')
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    tipo = models.CharField(max_length=50, choices=[('DOCUMENTO', 'Documento'), ('ENLACE', 'Enlace')], default='DOCUMENTO')
+    autor = models.ForeignKey(Persona, on_delete=models.CASCADE, related_name='documentos')
+
 
     def __str__(self):
         return self.nombre

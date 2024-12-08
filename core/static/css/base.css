@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --color-bg: #2c3e50;
+  --color-text: #ecf0f1;
+  --color-primary: #3498db;
+  --color-secondary: #e74c3c;
+  --color-accent: #f39c12;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.nav {
+  background-color: rgba(52, 152, 219, 0.1);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav__item {
+  margin-right: 1rem;
+  position: relative;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.nav__link:hover {
+  color: var(--color-accent);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav__dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--color-bg);
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  top: 100%;
+  left: 0;
+  padding: 0.5rem 0;
+  margin: 0;
+  list-style: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.nav__item:hover .nav__dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.nav__dropdown-content li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__dropdown-item {
+  padding: 0.75rem 1.5rem;
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav__dropdown-item:hover {
+  background-color: var(--color-primary);
+}
+
+.nav__dropdown-item.active {
+  background-color: var(--color-primary);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer {
+  background-color: rgba(52, 152, 219, 0.1);
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.footer__text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+

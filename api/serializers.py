@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Persona,Proyecto,Tarea,Comentario,Archivo
+from .models import Persona,Proyecto,Tarea,Comentario,Documento
 
 class PersonaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,7 +21,7 @@ class ComentarioSerializer(serializers.ModelSerializer):
         model = Comentario
         fields = "__all__"
 
-class ArchivoSerializer(serializers.ModelSerializer):
+class DocumentoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Archivo
+        model = Documento
         fields = "__all__"
