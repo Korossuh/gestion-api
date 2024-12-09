@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear o Modificar Comentario{% endblock title %}
+
+{% block content %}
+<style>
+    /* Estilos generales para los campos */
+.input-contenido, .input-tarea, .input-autor {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.label-contenido, .label-tarea, .label-autor {
+    font-weight: bold;
+}
+
+.error-feedback {
+    color: red;
+    margin-top: 5px;
+}
+
+.error-text {
+    font-size: 0.9rem;
+}
+
+.btn-save {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.btn-save:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+</style>
+<div class="container mt-5">
+    <h1>{% if form.instance.id %}Modificar Comentario{% else %}Crear Comentario{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Contenido -->
+        <div class="form-group">
+            <label for="{{ form.contenido.id_for_label }}" class="label-contenido">Contenido</label>
+            {{ form.contenido }}
+            {% if form.contenido.errors %}
+                <div class="error-feedback">
+                    {% for error in form.contenido.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Tarea -->
+        <div class="form-group">
+            <label for="{{ form.tarea.id_for_label }}" class="label-tarea">Tarea</label>
+            {{ form.tarea }}
+            {% if form.tarea.errors %}
+                <div class="error-feedback">
+                    {% for error in form.tarea.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Autor -->
+        <div class="form-group">
+            <label for="{{ form.autor.id_for_label }}" class="label-autor">Autor</label>
+            {{ form.autor }}
+            {% if form.autor.errors %}
+                <div class="error-feedback">
+                    {% for error in form.autor.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Botones -->
+        <button type="submit" class="btn btn-save">Guardar</button>
+        <a href="{% url 'comentariosView' %}" class="btn btn-cancel">Cancelar</a>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,194 @@
+:root {
+    --background-color: #2c3e50;
+    --surface-color: #34495e;
+    --primary-color: #3498db;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --danger-color: #e74c3c;
+    --text-color: #ecf0f1;
+    --border-color: rgba(236, 240, 241, 0.1);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.crud-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.crud-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+/* Search and Add section */
+.crud-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.search-input::placeholder {
+    color: rgba(236, 240, 241, 0.6);
+}
+
+.search-button,
+.add-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.search-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.add-button {
+    background-color: var(--success-color);
+    color: white;
+    text-decoration: none;
+}
+
+.search-button:hover,
+.add-button:hover {
+    opacity: 0.9;
+}
+
+/* Table styles */
+.table-container {
+    overflow-x: auto;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.crud-table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.crud-table th,
+.crud-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.crud-table th {
+    background-color: rgba(52, 152, 219, 0.1);
+    font-weight: 600;
+}
+
+.crud-table tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+/* Status badges */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-progress {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+}
+
+.status-pending {
+    background-color: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+}
+
+.status-completed {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+/* Action buttons */
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-button {
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: opacity 0.3s ease;
+}
+
+.action-modify {
+    background-color: var(--warning-color);
+    color: #000;
+}
+
+.action-delete {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.action-button:hover {
+    opacity: 0.9;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(236, 240, 241, 0.6);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .crud-actions {
+        flex-direction: column;
+    }
+
+    .search-form {
+        max-width: 100%;
+    }
+
+    .crud-table th,
+    .crud-table td {
+        padding: 0.75rem;
+    }
+
+    .actions-cell {
+        flex-direction: column;
+    }
+
+    .action-button {
+        text-align: center;
+    }
+}
+

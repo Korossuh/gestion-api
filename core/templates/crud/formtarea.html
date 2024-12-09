@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear o Modificar Tarea{% endblock title %}
+
+{% block content %}
+
+<style>
+    /* Estilos generales para los campos */
+.input-titulo, .input-descripcion, .input-estado, .input-proyecto, .input-asignado {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.label-titulo, .label-descripcion, .label-estado, .label-proyecto, .label-asignado {
+    font-weight: bold;
+}
+
+.error-feedback {
+    color: red;
+    margin-top: 5px;
+}
+
+.error-text {
+    font-size: 0.9rem;
+}
+
+.btn-save {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.btn-save:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+</style>
+
+<div class="container mt-5">
+    <h1>{% if form.instance.id %}Modificar Tarea{% else %}Crear Tarea{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Título -->
+        <div class="form-group">
+            <label for="{{ form.titulo.id_for_label }}" class="label-titulo">Título</label>
+            {{ form.titulo }}
+            {% if form.titulo.errors %}
+                <div class="error-feedback">
+                    {% for error in form.titulo.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-group">
+            <label for="{{ form.descripcion.id_for_label }}" class="label-descripcion">Descripción</label>
+            {{ form.descripcion }}
+            {% if form.descripcion.errors %}
+                <div class="error-feedback">
+                    {% for error in form.descripcion.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Estado -->
+        <div class="form-group">
+            <label for="{{ form.estado.id_for_label }}" class="label-estado">Estado</label>
+            {{ form.estado }}
+            {% if form.estado.errors %}
+                <div class="error-feedback">
+                    {% for error in form.estado.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Proyecto -->
+        <div class="form-group">
+            <label for="{{ form.proyecto.id_for_label }}" class="label-proyecto">Proyecto</label>
+            {{ form.proyecto }}
+            {% if form.proyecto.errors %}
+                <div class="error-feedback">
+                    {% for error in form.proyecto.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Asignado a -->
+        <div class="form-group">
+            <label for="{{ form.asignado_a.id_for_label }}" class="label-asignado">Asignado a</label>
+            {{ form.asignado_a }}
+            {% if form.asignado_a.errors %}
+                <div class="error-feedback">
+                    {% for error in form.asignado_a.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Botones -->
+        <button type="submit" class="btn btn-save">Guardar</button>
+        <a href="{% url 'tareasView' %}" class="btn btn-cancel">Cancelar</a>
+    </form>
+</div>
+{% endblock content %}

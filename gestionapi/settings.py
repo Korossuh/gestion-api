@@ -27,7 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'core', 
+    #Manejo de api
     'rest_framework',
+    #Token para seguridad api
+    #Documentación
     'coreapi',
 ]
 
@@ -114,6 +117,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#Sirve para que funcione la documentación
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
+
+#Manejo de sesiones
+LOGIN_URL = '/login/' 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'  

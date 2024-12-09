@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear o Modificar Documento{% endblock title %}
+
+{% block content %}
+<style>
+    /* Estilos generales para los campos */
+.input-nombre, .input-descripcion, .input-enlace, .input-tarea, .input-tipo, .input-autor {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.label-nombre, .label-descripcion, .label-enlace, .label-tarea, .label-tipo, .label-autor {
+    font-weight: bold;
+}
+
+.error-feedback {
+    color: red;
+    margin-top: 5px;
+}
+
+.error-text {
+    font-size: 0.9rem;
+}
+
+.btn-save {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.btn-save:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+</style>
+
+<div class="container mt-5">
+    <h1>{% if form.instance.id %}Modificar Documento{% else %}Crear Documento{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Nombre -->
+        <div class="form-group">
+            <label for="{{ form.nombre.id_for_label }}" class="label-nombre">Nombre</label>
+            {{ form.nombre }}
+            {% if form.nombre.errors %}
+                <div class="error-feedback">
+                    {% for error in form.nombre.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-group">
+            <label for="{{ form.descripcion.id_for_label }}" class="label-descripcion">Descripción</label>
+            {{ form.descripcion }}
+            {% if form.descripcion.errors %}
+                <div class="error-feedback">
+                    {% for error in form.descripcion.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Enlace -->
+        <div class="form-group">
+            <label for="{{ form.enlace.id_for_label }}" class="label-enlace">Enlace</label>
+            {{ form.enlace }}
+            {% if form.enlace.errors %}
+                <div class="error-feedback">
+                    {% for error in form.enlace.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Tarea -->
+        <div class="form-group">
+            <label for="{{ form.tarea.id_for_label }}" class="label-tarea">Tarea</label>
+            {{ form.tarea }}
+            {% if form.tarea.errors %}
+                <div class="error-feedback">
+                    {% for error in form.tarea.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Tipo -->
+        <div class="form-group">
+            <label for="{{ form.tipo.id_for_label }}" class="label-tipo">Tipo</label>
+            {{ form.tipo }}
+            {% if form.tipo.errors %}
+                <div class="error-feedback">
+                    {% for error in form.tipo.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Autor -->
+        <div class="form-group">
+            <label for="{{ form.autor.id_for_label }}" class="label-autor">Autor</label>
+            {{ form.autor }}
+            {% if form.autor.errors %}
+                <div class="error-feedback">
+                    {% for error in form.autor.errors %}
+                        <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Botones -->
+        <button type="submit" class="btn btn-save">Guardar</button>
+        <a href="{% url 'documentosView' %}" class="btn btn-cancel">Cancelar</a>
+    </form>
+</div>
+{% endblock content %}

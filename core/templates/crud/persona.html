@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de Personas{% endblock title %}
+
+{% block content %}
+<div class="crud-container">
+    <h1 class="crud-title">Lista de Personas</h1>
+
+    <div class="crud-actions">
+        <form method="get" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                class="search-input" 
+                placeholder="Buscar por nombre" 
+                value="{{ query }}"
+            >
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+        <a href="{% url 'personaAdd' %}" class="add-button">Agregar Nueva Persona</a>
+    </div>
+
+    <div class="table-container">
+        <table class="crud-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for persona in personas %}
+                    <tr>
+                        <td>{{ persona.id }}</td>
+                        <td>{{ persona.nombre }}</td>
+                        <td>{{ persona.email }}</td>
+                        <td>{{ persona.telefono }}</td>
+                        <td>{{ persona.fecha_nacimiento }}</td>
+                        <td class="actions-cell">
+                            <a href="{% url 'personaMod' persona.id %}" class="action-button action-modify">Modificar</a>
+                            <a href="{% url 'personaDel' persona.id %}" class="action-button action-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-message">No se encontraron resultados</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

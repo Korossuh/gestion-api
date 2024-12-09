@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de Comentarios{% endblock title %}
+
+{% block content %}
+<div class="crud-container">
+    <h1 class="crud-title">Lista de Comentarios</h1>
+
+    <div class="crud-actions">
+        <form method="get" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                class="search-input" 
+                placeholder="Buscar por contenido" 
+                value="{{ query }}"
+            >
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+        <a href="{% url 'comentarioAdd' %}" class="add-button">Agregar Nuevo Comentario</a>
+    </div>
+
+    <div class="table-container">
+        <table class="crud-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Contenido</th>
+                    <th>Tarea</th>
+                    <th>Autor</th>
+                    <th>Fecha Creación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comentario in comentarios %}
+                    <tr>
+                        <td>{{ comentario.id }}</td>
+                        <td>{{ comentario.contenido }}</td>
+                        <td>{{ comentario.tarea.titulo }}</td>
+                        <td>{{ comentario.autor.nombre }}</td>
+                        <td>{{ comentario.fecha_creacion }}</td>
+                        <td class="actions-cell">
+                            <a href="{% url 'comentarioMod' comentario.id %}" class="action-button action-modify">Modificar</a>
+                            <a href="{% url 'comentarioDel' comentario.id %}" class="action-button action-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="empty-message">No se encontraron resultados</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

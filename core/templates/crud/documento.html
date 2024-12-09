@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de Documentos{% endblock title %}
+
+{% block content %}
+<div class="crud-container">
+    <h1 class="crud-title">Lista de Documentos</h1>
+
+    <div class="crud-actions">
+        <form method="get" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                class="search-input" 
+                placeholder="Buscar por nombre" 
+                value="{{ query }}"
+            >
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+        <a href="{% url 'documentoAdd' %}" class="add-button">Agregar Nuevo Documento</a>
+    </div>
+
+    <div class="table-container">
+        <table class="crud-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Enlace</th>
+                    <th>Tarea</th>
+                    <th>Tipo</th>
+                    <th>Autor</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for documento in documentos %}
+                    <tr>
+                        <td>{{ documento.id }}</td>
+                        <td>{{ documento.nombre }}</td>
+                        <td>{{ documento.descripcion }}</td>
+                        <td><a href="{{ documento.enlace }}" target="_blank" class="document-link">Ver Enlace</a></td>
+                        <td>{{ documento.tarea.titulo }}</td>
+                        <td>{{ documento.tipo }}</td>
+                        <td>{{ documento.autor.nombre }}</td>
+                        <td class="actions-cell">
+                            <a href="{% url 'documentoMod' documento.id %}" class="action-button action-modify">Modificar</a>
+                            <a href="{% url 'documentoDel' documento.id %}" class="action-button action-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8" class="empty-message">No se encontraron resultados</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

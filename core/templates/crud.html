@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Página Principal{% endblock title %}
+
+{% block content %}
+<div class="main-page">
+    <h1 class="main-page__title">Sistema de Gestión de Datos</h1>
+    <p class="main-page__description">Bienvenido al sistema de gestión de datos. Elige una de las siguientes opciones para acceder a los CRUDs:</p>
+
+    <div class="card-grid">
+        <a href="{% url 'personasView' %}" class="card">
+            <div class="card__content">
+                <h2 class="card__title">Personas</h2>
+                <p class="card__description">Gestionar información de personas</p>
+            </div>
+        </a>
+        <a href="{% url 'proyectosView' %}" class="card">
+            <div class="card__content">
+                <h2 class="card__title">Proyectos</h2>
+                <p class="card__description">Administrar proyectos en curso</p>
+            </div>
+        </a>
+        <a href="{% url 'tareasView' %}" class="card">
+            <div class="card__content">
+                <h2 class="card__title">Tareas</h2>
+                <p class="card__description">Gestionar tareas y actividades</p>
+            </div>
+        </a>
+        <a href="{% url 'comentariosView' %}" class="card">
+            <div class="card__content">
+                <h2 class="card__title">Comentarios</h2>
+                <p class="card__description">Ver y administrar comentarios</p>
+            </div>
+        </a>
+        <a href="{% url 'documentosView' %}" class="card">
+            <div class="card__content">
+                <h2 class="card__title">Documentos</h2>
+                <p class="card__description">Gestionar archivos y documentos</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock content %}

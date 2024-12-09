@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de Tareas{% endblock title %}
+
+{% block content %}
+<div class="crud-container">
+    <h1 class="crud-title">Lista de Tareas</h1>
+
+    <div class="crud-actions">
+        <form method="get" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                class="search-input" 
+                placeholder="Buscar por título" 
+                value="{{ query }}"
+            >
+            <button type="submit" class="search-button">Buscar</button>
+        </form>
+        <a href="{% url 'tareaAdd' %}" class="add-button">Agregar Nueva Tarea</a>
+    </div>
+
+    <div class="table-container">
+        <table class="crud-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Proyecto</th>
+                    <th>Asignado a</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarea in tareas %}
+                    <tr>
+                        <td>{{ tarea.id }}</td>
+                        <td>{{ tarea.titulo }}</td>
+                        <td>{{ tarea.descripcion }}</td>
+                        <td>
+                            <span class="status-badge {% if tarea.estado == 'EN PROGRESO' %}status-progress{% elif tarea.estado == 'PENDIENTE' %}status-pending{% else %}status-completed{% endif %}">
+                                {{ tarea.estado }}
+                            </span>
+                        </td>
+                        <td>{{ tarea.proyecto.nombre }}</td>
+                        <td>{{ tarea.asignado_a.nombre }}</td>
+                        <td class="actions-cell">
+                            <a href="{% url 'tareaMod' tarea.id %}" class="action-button action-modify">Modificar</a>
+                            <a href="{% url 'tareaDel' tarea.id %}" class="action-button action-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="7" class="empty-message">No se encontraron resultados</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+

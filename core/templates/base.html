@@ -7,6 +7,8 @@
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/csv.css' %}">
+    <link rel="stylesheet" href="{% static 'css/crud.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tablascrud.css' %}">
 </head>
 <body>
     <nav class="nav">
@@ -24,8 +26,19 @@
                     <li><a href="{% url 'documentos-list' %}" class="nav__dropdown-item">Documentos</a></li>
                 </ul>
             </li>
+            <li class="nav__item">
+                <a href="{% url 'crudView' %}" class="nav__link">Tablas Crud</a>
+                <ul class="nav__dropdown-content">
+                    <li><a href="{% url 'personasView' %}" class="nav__dropdown-item">Personas</a></li>
+                    <li><a href="{% url 'proyectosView' %}" class="nav__dropdown-item">Proyectos</a></li>
+                    <li><a href="{% url 'tareasView' %}" class="nav__dropdown-item">Tareas</a></li>
+                    <li><a href="{% url 'comentariosView' %}" class="nav__dropdown-item">Comentarios</a></li>
+                    <li><a href="{% url 'documentosView' %}" class="nav__dropdown-item">Documentos</a></li>
+                </ul>
+            </li>
             <li class="nav__item"><a href="{% url 'csv' %}" class="nav__link">Descargar svc</a></li>
             <li class="nav__item"><a href="http://localhost:8000/docs/" class="nav__link">Documentacion</a></li>
+            <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">Cerrar Sesión</a></li>
         </ul>
     </nav>
     
