@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'core', 
     #Manejo de api
     'rest_framework',
-    #Token para seguridad api
     #Documentación
     'coreapi',
 ]

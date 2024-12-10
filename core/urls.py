@@ -3,12 +3,15 @@ from django.urls import path,include
 from .views import *
 
 urlpatterns = [
+    #Url para Login y Logout del Sistema
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', logout_view, name='logout'),
 
+    #Url Principales
     path("",index,name='index'),
     path("csv/", csvView, name='csv'),
     path("Crud/",crudView, name='crudView'),
+    path('api/obtener-datos/', obtener_datos_json, name='obtener_datos_json'),
 
     #Urls para Crud Personas
     path("Personas/",personasView,name='personasView'),

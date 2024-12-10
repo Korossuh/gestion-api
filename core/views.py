@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
+from rest_framework.response import Response
 from django.http import HttpResponse
 from api.models import * 
+from api.serializers import *
 from .forms import*
 import csv
 
@@ -20,8 +23,34 @@ def logout_view(request):
     logout(request)
     return render(request, 'logout.html') 
 
+@login_required
 def crudView(request):
     return render(request, 'crud.html')
+
+@api_view(['GET'])
+@login_required
+def obtener_datos_json(request):
+    personas = Persona.objects.all()
+    proyectos = Proyecto.objects.all()
+    tareas = Tarea.objects.all()
+    comentarios = Comentario.objects.all()
+    documentos = Documento.objects.all()
+
+    personas_serializer = PersonaSerializer(personas, many=True)
+    proyectos_serializer = ProyectoSerializer(proyectos, many=True)
+    tareas_serializer = TareaSerializer(tareas, many=True)
+    comentarios_serializer = ComentarioSerializer(comentarios, many=True)
+    documentos_serializer = DocumentoSerializer(documentos, many=True)
+
+    data = {
+        'personas': personas_serializer.data,
+        'proyectos': proyectos_serializer.data,
+        'tareas': tareas_serializer.data,
+        'comentarios': comentarios_serializer.data,
+        'documentos': documentos_serializer.data,
+    }
+
+    return Response(data)
 
 #=================================================
 #======== FUNCIONES PARA CRUD PERSONAS ===========
